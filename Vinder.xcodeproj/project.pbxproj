@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */; };
+		56B67C2121D3BC9100BDDEFD /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */; };
 		56DD3BA621D2820F00A6D4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */; };
 		56DD3BA821D2820F00A6D4F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BA721D2820F00A6D4F9 /* ViewController.swift */; };
 		56DD3BAB21D2820F00A6D4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DD3BA921D2820F00A6D4F9 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControlsStackView.swift; sourceTree = "<group>"; };
+		56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
 		56DD3BA221D2820F00A6D4F9 /* Vinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56DD3BA721D2820F00A6D4F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -37,6 +41,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		569EEB3121D2E9CE00A0BA9E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */,
+				56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		56DD3B9921D2820F00A6D4F9 = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +69,7 @@
 		56DD3BA421D2820F00A6D4F9 /* Vinder */ = {
 			isa = PBXGroup;
 			children = (
+				569EEB3121D2E9CE00A0BA9E /* Views */,
 				56DD3BB721D285EE00A6D4F9 /* Extensions */,
 				56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */,
 				56DD3BA721D2820F00A6D4F9 /* ViewController.swift */,
@@ -148,7 +162,9 @@
 			files = (
 				56DD3BA821D2820F00A6D4F9 /* ViewController.swift in Sources */,
 				56DD3BA621D2820F00A6D4F9 /* AppDelegate.swift in Sources */,
+				569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */,
 				56DD3BB921D2860B00A6D4F9 /* Extensions+UIView.swift in Sources */,
+				56B67C2121D3BC9100BDDEFD /* TopNavigationStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
