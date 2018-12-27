@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     //MARK:- Fileprivate
     
     fileprivate func setupDummyCards() {
-        print("Settring dummy cards...")
+        print("Setting up dummy cards")
         let cardView = CardView(frame: .zero)
         cardsDeckView.addSubview(cardView)
         cardView.fillSuperview()
