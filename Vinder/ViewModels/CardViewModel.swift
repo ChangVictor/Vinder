@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol ProducesCardViewModel {
+    
+    func toCardViewModel() -> CardViewModel
+    
+}
+
 struct CardViewModel {
     
     // define the properties that the view will diplay/render out

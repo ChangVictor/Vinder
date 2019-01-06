@@ -8,14 +8,14 @@
 
 import UIKit
 
-struct User {
+struct User: ProducesCardViewModel {
     
     let name: String
     let age: Int
     let profession: String
     let imageName: String
     
-    func toCardViewModer() -> CardViewModel {
+    func toCardViewModel() -> CardViewModel {
         let attributedText = NSMutableAttributedString(string: name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
         attributedText.append(NSAttributedString(string: "  \(age)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         
