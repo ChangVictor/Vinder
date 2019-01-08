@@ -19,6 +19,7 @@ class HomeController: UIViewController {
                 
                 User(name: "Dua Lipa", age: 23, profession: "Singer", imageName: "dua1"),
                 User(name: "Hailey Baldwin", age: 22, profession: "Model", imageName: "hailey1"),
+                User(name: "Victor Chang", age: 28, profession: "iOS Developer", imageName: "victor1"),
                 
                 Advertiser(title: "iOS Development", brandName: "Victor Chang", posterPhotoName: "macbookPro")
     
