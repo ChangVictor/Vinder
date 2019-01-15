@@ -17,27 +17,29 @@ class RegistrationController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
         button.layer.cornerRadius = 16
         return button
-    }()
+    }() 
+    
+    lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
+    lazy var selectPhotoHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
     
     let fullNameTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 50)
         tf.placeholder = "Enter full name"
         tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
     let emailTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 50)
         tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
         return tf
     }()
     
     let passwordTextField: CustomTextField = {
-        let tf = CustomTextField(padding: 16)
+        let tf = CustomTextField(padding: 24, height: 50)
         tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
         return tf
@@ -46,11 +48,11 @@ class RegistrationController: UIViewController {
     @objc fileprivate func handleTextChange(textField: UITextField) {
         
         if textField == fullNameTextField {
-            registreationViewModel.fullName = textField.text
+            registrationViewModel.fullName = textField.text
         } else if textField == emailTextField {
-            registreationViewModel.email = textField.text
+            registrationViewModel.email = textField.text
         } else {
-            registreationViewModel.password = textField.text
+            registrationViewModel.password = textField.text
         }
     }
     
@@ -65,8 +67,6 @@ class RegistrationController: UIViewController {
         button.isEnabled = false
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.layer.cornerRadius = 22
-        
-        
         return button
     }()
     
@@ -84,25 +84,23 @@ class RegistrationController: UIViewController {
 
     // MARK:- Private
     
-    let registreationViewModel = RegistrationViewModel()
+    let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registreationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
-            
+        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
             print("Form is changing, is it valid?", isFormValid)
             
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
-                self.registerButton.backgroundColor = #colorLiteral(red: 0.8142727017, green: 0.09650861472, blue: 0.3355827034, alpha: 1)
+                self.registerButton.backgroundColor = #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1)
                 self.registerButton.setTitleColor(.white, for: .normal)
             } else {
                 self.registerButton.backgroundColor = .lightGray
-                self.registerButton.setTitleColor(.darkGray, for: .normal)
-                
+                self.registerButton.setTitleColor(.gray, for: .normal)
             }
         }
     }
-    
+
     fileprivate func setupTapGesture() {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
     }
@@ -113,15 +111,12 @@ class RegistrationController: UIViewController {
     }
     
     fileprivate func setupNotificationObservers() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         // to avoid retain cycles
         NotificationCenter.default.removeObserver(self)
         
@@ -154,7 +149,6 @@ class RegistrationController: UIViewController {
             registerButton
             ])
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
         stackView.spacing = 8
         return stackView
     }()
@@ -167,8 +161,14 @@ class RegistrationController: UIViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if self.traitCollection.verticalSizeClass == .compact {
             overrallStackView.axis = .horizontal
+            verticalStackView.distribution = .fillEqually
+            selectPhotoHeightAnchor.isActive = false
+            selectPhotoButtonWidthAnchor.isActive = true
         } else {
             overrallStackView.axis = .vertical
+            verticalStackView.distribution = .fill
+            selectPhotoButtonWidthAnchor.isActive = false
+            selectPhotoHeightAnchor.isActive = true
         }
     }
 
@@ -176,7 +176,7 @@ class RegistrationController: UIViewController {
         
         view.addSubview(overrallStackView)
         
-        overrallStackView.axis = .horizontal
+        overrallStackView.axis = .vertical
         overrallStackView.spacing = 8
         selectPhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
         overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
