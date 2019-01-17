@@ -10,6 +10,7 @@
 		5626D99821D513150065962B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626D99721D513150065962B /* User.swift */; };
 		5651C1EA21E7D4F400403768 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5651C1E921E7D4F400403768 /* RegistrationController.swift */; };
 		5693C19C21D3F715001FFE33 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5693C19B21D3F715001FFE33 /* CardView.swift */; };
+		569CB20D21F111DA00CBF3B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CB20C21F111DA00CBF3B0 /* GoogleService-Info.plist */; };
 		569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */; };
 		56B01A8621E2AA7200BE1A19 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B01A8521E2AA7200BE1A19 /* Advertiser.swift */; };
 		56B67C2121D3BC9100BDDEFD /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */; };
@@ -22,12 +23,14 @@
 		56DD3BB021D2821000A6D4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DD3BAE21D2821000A6D4F9 /* LaunchScreen.storyboard */; };
 		56DD3BB921D2860B00A6D4F9 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BB821D2860B00A6D4F9 /* Extensions+UIView.swift */; };
 		56F1DFEE21ED3F0D004DCD71 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F1DFED21ED3F0D004DCD71 /* RegistrationViewModel.swift */; };
+		B02A9D02916B146C9AC9C23F /* Pods_Vinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68E68473AFCE30BFD33108B8 /* Pods_Vinder.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5626D99721D513150065962B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5651C1E921E7D4F400403768 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		5693C19B21D3F715001FFE33 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		569CB20C21F111DA00CBF3B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControlsStackView.swift; sourceTree = "<group>"; };
 		56B01A8521E2AA7200BE1A19 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
@@ -43,6 +46,9 @@
 		56DD3BB821D2860B00A6D4F9 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		56F1DFED21ED3F0D004DCD71 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		56F1DFEF21ED4379004DCD71 /* Vinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vinder.entitlements; sourceTree = "<group>"; };
+		68E68473AFCE30BFD33108B8 /* Pods_Vinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		799B17BC03952951DAC35745 /* Pods-Vinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vinder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Vinder/Pods-Vinder.release.xcconfig"; sourceTree = "<group>"; };
+		BF39CD6393ACEF0194B77A46 /* Pods-Vinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vinder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Vinder/Pods-Vinder.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02A9D02916B146C9AC9C23F /* Pods_Vinder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +106,8 @@
 			children = (
 				56DD3BA421D2820F00A6D4F9 /* Vinder */,
 				56DD3BA321D2820F00A6D4F9 /* Products */,
+				CD274A22F0C72B73D6DD18EB /* Pods */,
+				832AB6CBD2E96BC83DB7FBFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +133,7 @@
 				56DD3BAC21D2821000A6D4F9 /* Assets.xcassets */,
 				56DD3BAE21D2821000A6D4F9 /* LaunchScreen.storyboard */,
 				56DD3BB121D2821000A6D4F9 /* Info.plist */,
+				569CB20C21F111DA00CBF3B0 /* GoogleService-Info.plist */,
 			);
 			path = Vinder;
 			sourceTree = "<group>";
@@ -136,6 +146,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		832AB6CBD2E96BC83DB7FBFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68E68473AFCE30BFD33108B8 /* Pods_Vinder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD274A22F0C72B73D6DD18EB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BF39CD6393ACEF0194B77A46 /* Pods-Vinder.debug.xcconfig */,
+				799B17BC03952951DAC35745 /* Pods-Vinder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56DD3BB421D2821000A6D4F9 /* Build configuration list for PBXNativeTarget "Vinder" */;
 			buildPhases = (
+				6A5F230D5A9E9C537C4D2618 /* [CP] Check Pods Manifest.lock */,
 				56DD3B9E21D2820F00A6D4F9 /* Sources */,
 				56DD3B9F21D2820F00A6D4F9 /* Frameworks */,
 				56DD3BA021D2820F00A6D4F9 /* Resources */,
+				C25FC3048223339F50AD0729 /* [CP] Embed Pods Frameworks */,
+				3C87FA1DF3B1B43BF045DEFA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -200,12 +230,100 @@
 			buildActionMask = 2147483647;
 			files = (
 				56DD3BB021D2821000A6D4F9 /* LaunchScreen.storyboard in Resources */,
+				569CB20D21F111DA00CBF3B0 /* GoogleService-Info.plist in Resources */,
 				56DD3BAD21D2821000A6D4F9 /* Assets.xcassets in Resources */,
 				56DD3BAB21D2820F00A6D4F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C87FA1DF3B1B43BF045DEFA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Vinder/Pods-Vinder-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vinder/Pods-Vinder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A5F230D5A9E9C537C4D2618 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vinder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C25FC3048223339F50AD0729 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Vinder/Pods-Vinder-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Vinder/Pods-Vinder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		56DD3B9E21D2820F00A6D4F9 /* Sources */ = {
@@ -367,6 +485,7 @@
 		};
 		56DD3BB521D2821000A6D4F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF39CD6393ACEF0194B77A46 /* Pods-Vinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Vinder/Vinder.entitlements;
@@ -386,6 +505,7 @@
 		};
 		56DD3BB621D2821000A6D4F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 799B17BC03952951DAC35745 /* Pods-Vinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Vinder/Vinder.entitlements;
