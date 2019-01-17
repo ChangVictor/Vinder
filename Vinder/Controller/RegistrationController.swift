@@ -10,6 +10,20 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
+extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.originalImage] as? UIImage
+        self.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 class RegistrationController: UIViewController {
 
     // UI Components
@@ -20,8 +34,15 @@ class RegistrationController: UIViewController {
         button.backgroundColor = .white
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         return button
-    }() 
+    }()
+    
+    @objc func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
     
     lazy var selectPhotoButtonWidthAnchor = selectPhotoButton.widthAnchor.constraint(equalToConstant: 275)
     lazy var selectPhotoHeightAnchor = selectPhotoButton.heightAnchor.constraint(equalToConstant: 275)
