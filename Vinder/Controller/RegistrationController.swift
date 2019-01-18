@@ -14,7 +14,9 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.originalImage] as? UIImage
-        self.selectPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
+        registrationViewModel.bindableImage.value = image
+//        registrationViewModel.image = image
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -35,6 +37,8 @@ class RegistrationController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 16
         button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
+        button.clipsToBounds = true
         return button
     }()
     
@@ -143,8 +147,9 @@ class RegistrationController: UIViewController {
     let registrationViewModel = RegistrationViewModel()
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObserver = { [unowned self] (isFormValid) in
-            print("Form is changing, is it valid?", isFormValid)
+        registrationViewModel.bindableIsFormValid.bind { [unowned self] (isFormValid) in
+            
+            guard let isFormValid = isFormValid else { return }
             
             self.registerButton.isEnabled = isFormValid
             if isFormValid {
@@ -154,6 +159,12 @@ class RegistrationController: UIViewController {
                 self.registerButton.backgroundColor = .lightGray
                 self.registerButton.setTitleColor(.gray, for: .normal)
             }
+        }
+        
+        registrationViewModel.bindableImage.bind { [unowned self] (img) in
+            
+            self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
+            
         }
     }
 
