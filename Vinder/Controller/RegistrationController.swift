@@ -101,6 +101,8 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let registeringHUD = JGProgressHUD(style: .dark)
+    
     @objc fileprivate func handleRegister() {
         print("Register user in Firebase")
         
@@ -108,21 +110,46 @@ class RegistrationController: UIViewController {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
+        registrationViewModel.bindableIsRegistering.value = true
+        
         Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
             
             if let error = error {
                 print(error)
                 self.showHUDWithError(error: error)
-                
                 return
             }
             
             print("Succesfully registered user: ", res?.user.uid ?? "")
             
+            // Only upload images to Firebase Storage once you are authorized
+            let filename = UUID().uuidString
+            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
+            ref.putData(imageData, metadata: nil, completion: { (_, err) in
+                
+                if let err = err {
+                    self.showHUDWithError(error: err)
+                    return // bail out of code
+                }
+                
+                print("Finished uploading image to storage")
+                ref.downloadURL(completion: { (url, errr) in
+                    if let err = err {
+                        self.showHUDWithError(error: err)
+                        return
+                    }
+                    
+                    self.registrationViewModel.bindableIsRegistering.value = false
+                    print("downloadURL of image:", url?.absoluteString ?? "not set")
+                    // Store the download url into Firestore
+                })
+            })
         }
     }
     
     fileprivate func showHUDWithError(error: Error) {
+        registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
         hud.textLabel.text = "Failed registration"
         hud.detailTextLabel.text = error.localizedDescription
@@ -162,9 +189,15 @@ class RegistrationController: UIViewController {
         }
         
         registrationViewModel.bindableImage.bind { [unowned self] (img) in
-            
             self.selectPhotoButton.setImage(img?.withRenderingMode(.alwaysOriginal), for: .normal)
-            
+        }
+        registrationViewModel.bindableIsRegistering.bind { [unowned self] (isRegistering) in
+            if isRegistering == true {
+                self.registeringHUD.textLabel.text = "Register"
+                self.registeringHUD.show(in: self.view)
+            } else {
+                self.registeringHUD.dismiss()
+            }
         }
     }
 
@@ -185,7 +218,7 @@ class RegistrationController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // to avoid retain cycles
-        NotificationCenter.default.removeObserver(self)
+//        NotificationCenter.default.removeObserver(self)
         
     }
     
