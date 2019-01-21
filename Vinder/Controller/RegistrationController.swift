@@ -105,17 +105,15 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleRegister() {
         self.handleTapDismiss()
-        
         registrationViewModel.performRegistration { [weak self] (err) in
             if let err = err {
-                self.showHUDWithError(error: err)
+                self?.showHUDWithError(error: err)
                 return
             }
-            
-            print("Finished registering user")
+            print("Finished registering our user")
         }
     }
-    
+
     fileprivate func showHUDWithError(error: Error) {
         registeringHUD.dismiss()
         let hud = JGProgressHUD(style: .dark)
