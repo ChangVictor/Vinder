@@ -104,47 +104,15 @@ class RegistrationController: UIViewController {
     let registeringHUD = JGProgressHUD(style: .dark)
     
     @objc fileprivate func handleRegister() {
-        print("Register user in Firebase")
-        
         self.handleTapDismiss()
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
         
-        registrationViewModel.bindableIsRegistering.value = true
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (res, error) in
-            
-            if let error = error {
-                print(error)
-                self.showHUDWithError(error: error)
+        registrationViewModel.performRegistration { [weak self] (err) in
+            if let err = err {
+                self.showHUDWithError(error: err)
                 return
             }
             
-            print("Succesfully registered user: ", res?.user.uid ?? "")
-            
-            // Only upload images to Firebase Storage once you are authorized
-            let filename = UUID().uuidString
-            let ref = Storage.storage().reference(withPath: "/images/\(filename)")
-            let imageData = self.registrationViewModel.bindableImage.value?.jpegData(compressionQuality: 0.75) ?? Data()
-            ref.putData(imageData, metadata: nil, completion: { (_, err) in
-                
-                if let err = err {
-                    self.showHUDWithError(error: err)
-                    return // bail out of code
-                }
-                
-                print("Finished uploading image to storage")
-                ref.downloadURL(completion: { (url, errr) in
-                    if let err = err {
-                        self.showHUDWithError(error: err)
-                        return
-                    }
-                    
-                    self.registrationViewModel.bindableIsRegistering.value = false
-                    print("downloadURL of image:", url?.absoluteString ?? "not set")
-                    // Store the download url into Firestore
-                })
-            })
+            print("Finished registering user")
         }
     }
     
