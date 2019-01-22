@@ -38,12 +38,14 @@ class HomeController: UIViewController {
         topStackView.settingButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         
         setupLayout()
-        setupDummyCards()
+        setupFirestoreUsersCards()
         fetchUsersFromFirestore()
     }
     
     fileprivate func fetchUsersFromFirestore() {
-        Firestore.firestore().collection("users").getDocuments { (snapshot, error) in
+//        let query = Firestore.firestore().collection("users")
+        let query = Firestore.firestore().collection("users").whereField("age", isLessThan: 31).whereField("age", isGreaterThan: 23)
+        query.getDocuments { (snapshot, error) in
             
             if let error = error  {
                 print("Failed to fecth user: ", error)
@@ -55,7 +57,7 @@ class HomeController: UIViewController {
                 let user = User(dictionary: userDictionary)
                 self.cardViewModels.append(user.toCardViewModel())
             })
-            self.setupDummyCards()
+            self.setupFirestoreUsersCards()
         }
     }
     
@@ -68,7 +70,7 @@ class HomeController: UIViewController {
 
     //MARK:- Fileprivate
     
-    fileprivate func setupDummyCards() {
+    fileprivate func setupFirestoreUsersCards() {
         
         cardViewModels.forEach { (cardVM) in
             let cardView = CardView(frame: .zero)
