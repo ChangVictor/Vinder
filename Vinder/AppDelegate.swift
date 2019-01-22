@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = HomeController()
-        
+//        window?.rootViewController = RegistrationController()
         return true
     }
 

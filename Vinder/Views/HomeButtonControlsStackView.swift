@@ -9,20 +9,29 @@
 import UIKit
 
 class HomeButtonControlsStackView: UIStackView {
-
+    
+    static func createButton(image: UIImage) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFill
+        return button
+    }
+    
+    let refreshButton = createButton(image: #imageLiteral(resourceName: "tinder_reload"))
+    let dislikeButton = createButton(image: #imageLiteral(resourceName: "tinder_cancel"))
+    let superLikeButton = createButton(image: #imageLiteral(resourceName: "tinder_star"))
+    let likeButton = createButton(image: #imageLiteral(resourceName: "tinder_heart"))
+    let specialButton = createButton(image: #imageLiteral(resourceName: "tinder_thunder"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         distribution = .fillEqually
         heightAnchor.constraint(equalToConstant: 95).isActive = true
         
-        let subviews = [#imageLiteral(resourceName: "tinder_reload"), #imageLiteral(resourceName: "tinder_cancel"), #imageLiteral(resourceName: "tinder_star"), #imageLiteral(resourceName: "tinder_heart"), #imageLiteral(resourceName: "tinder_thunder")].map { (image) -> UIView in
-            let button = UIButton(type: .system)
-            button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
-            return button
+        [refreshButton, dislikeButton, superLikeButton, superLikeButton, specialButton].forEach { (button) in
+            self.addArrangedSubview(button)
         }
-        subviews.forEach { (view) in
-            addArrangedSubview(view)
-        }
+        
     }
     
     required init(coder: NSCoder) {
