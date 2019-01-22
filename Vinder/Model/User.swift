@@ -10,30 +10,36 @@ import UIKit
 
 struct User: ProducesCardViewModel {
     
-    let name: String
-    let age: Int
-    let profession: String
-    let imageNames: [String]
+    var name: String?
+    var age: Int?
+    let profession: String?
+//    let imageNames: [String]
+    var imageUrl1: String?
+    var uid: String?
+    
     
     init(dictionary: [String: Any]) {
         // initialize user here
-        let name = dictionary["fullName"] as? String ?? ""
+        self.age = dictionary["age"] as? Int
+        self.profession = dictionary["proffesion"] as? String
         
-        self.age = 0
-        self.profession = "Unemployed"
-        self.name = name
-        
-        let imageUrl1 = dictionary["imageUrl1"] as? String ?? ""
-        self.imageNames = [imageUrl1]
+        self.name = dictionary["fullName"] as? String ?? ""
+        self.imageUrl1 = dictionary["imageUrl1"] as? String ?? ""
+        self.uid = dictionary["uid"] as? String ?? ""
     }
     
     func toCardViewModel() -> CardViewModel {
-        let attributedText = NSMutableAttributedString(string: name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
-        attributedText.append(NSAttributedString(string: "  \(age)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
+        let attributedText = NSMutableAttributedString(string: name ?? "", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
         
-        attributedText.append(NSAttributedString(string: "\n \(profession)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        let ageString = age != nil ? "\(age!)" : "N/A"
         
-        return CardViewModel(imageNames: imageNames, attributedString: attributedText, textAlignment: .left)
+        attributedText.append(NSAttributedString(string: "  \(ageString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
+        
+        let proffesionString = profession != nil ? "\(profession!)" : "Not available"
+        
+        attributedText.append(NSAttributedString(string: "\n \(proffesionString)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+        
+        return CardViewModel(imageNames: [imageUrl1 ?? ""], attributedString: attributedText, textAlignment: .left)
     }
     
 }
