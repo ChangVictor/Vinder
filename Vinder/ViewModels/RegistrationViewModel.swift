@@ -44,6 +44,7 @@ class RegistrationViewModel {
             self.saveImageToFirebase(completion: completion)
             
             // Only upload images to Firebase Storage once you are authorized
+            
            
         }
     }
