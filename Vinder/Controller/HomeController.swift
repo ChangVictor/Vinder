@@ -87,9 +87,10 @@ class HomeController: UIViewController {
     
     @objc func handleSettings() {
         
-        print("Show registration page...")
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true, completion: nil)
+        let settingsController = SettingsController()
+        let navController = UINavigationController(rootViewController: settingsController)
+        present(navController, animated: true, completion: nil)
+        
     }
 
     //MARK:- Fileprivate

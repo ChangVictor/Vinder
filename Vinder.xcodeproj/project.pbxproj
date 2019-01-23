@@ -15,6 +15,7 @@
 		569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */; };
 		56B01A8621E2AA7200BE1A19 /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B01A8521E2AA7200BE1A19 /* Advertiser.swift */; };
 		56B67C2121D3BC9100BDDEFD /* TopNavigationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */; };
+		56CED39821F89BC900E49C31 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CED39721F89BC900E49C31 /* SettingsController.swift */; };
 		56CFCEE121E27957004BBD2E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFCEE021E27957004BBD2E /* CardViewModel.swift */; };
 		56D8421F21E8DA3900CDA7BA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D8421E21E8DA3900CDA7BA /* CustomTextField.swift */; };
 		56DD3BA621D2820F00A6D4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		569EEB3221D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControlsStackView.swift; sourceTree = "<group>"; };
 		56B01A8521E2AA7200BE1A19 /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		56B67C2021D3BC9100BDDEFD /* TopNavigationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNavigationStackView.swift; sourceTree = "<group>"; };
+		56CED39721F89BC900E49C31 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		56CFCEE021E27957004BBD2E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		56D8421E21E8DA3900CDA7BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		56DD3BA221D2820F00A6D4F9 /* Vinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +93,7 @@
 				56DD3BA721D2820F00A6D4F9 /* HomeController.swift */,
 				5651C1E921E7D4F400403768 /* RegistrationController.swift */,
 				568FFD4421F2542100491456 /* Bindable.swift */,
+				56CED39721F89BC900E49C31 /* SettingsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				56DD3BB921D2860B00A6D4F9 /* Extensions+UIView.swift in Sources */,
 				56CFCEE121E27957004BBD2E /* CardViewModel.swift in Sources */,
 				5693C19C21D3F715001FFE33 /* CardView.swift in Sources */,
+				56CED39821F89BC900E49C31 /* SettingsController.swift in Sources */,
 				56B67C2121D3BC9100BDDEFD /* TopNavigationStackView.swift in Sources */,
 				5651C1EA21E7D4F400403768 /* RegistrationController.swift in Sources */,
 				5626D99821D513150065962B /* User.swift in Sources */,
