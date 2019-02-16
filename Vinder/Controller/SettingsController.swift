@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import JGProgressHUD
+import SDWebImage
 
 class CustomImagePickerController: UIImagePickerController {
     var imageButton: UIButton?
@@ -54,7 +57,30 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .interactive
+        
+        fetchCurrentUser()
 
+    }
+    
+    var user: User?
+    
+    fileprivate func fetchCurrentUser() {
+        // Fetch some Firestore data
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+            if let err = err {
+                print(err)
+                return
+            }
+            
+            // feth user here
+            print(snapshot?.data())
+            guard let dictionary = snapshot?.data() else { return }
+            self.user = User(dictionary: dictionary)
+            
+            self.tableView.reloadData()
+            
+        }
     }
     
     fileprivate func setupNavigationItems() {
@@ -132,10 +158,16 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         switch indexPath.section {
         case 1:
             cell.textField.placeholder = "Enter Name"
+            cell.textField.text = user?.name
         case 2:
             cell.textField.placeholder = "Enter Profession"
+            cell.textField.text = user?.profession
         case 3:
             cell.textField.placeholder = "Enter Age"
+            if let age = user?.age {
+                cell.textField.text = String(age)
+            }
+            
         default:
             cell.textField.placeholder = "Enter Bio"
         }
