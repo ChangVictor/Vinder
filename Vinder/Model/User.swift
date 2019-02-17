@@ -12,7 +12,7 @@ struct User: ProducesCardViewModel {
     
     var name: String?
     var age: Int?
-    let profession: String?
+    var profession: String?
 //    let imageNames: [String]
     var imageUrl1: String?
     var uid: String?
