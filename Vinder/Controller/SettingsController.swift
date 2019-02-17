@@ -74,12 +74,19 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             }
             
             // feth user here
-            print(snapshot?.data())
             guard let dictionary = snapshot?.data() else { return }
             self.user = User(dictionary: dictionary)
+            self.loadUserPhotos()
             
             self.tableView.reloadData()
             
+        }
+    }
+    
+    fileprivate func loadUserPhotos() {
+        guard let imageUrl = user?.imageUrl1, let url = URL(string: imageUrl) else { return }
+        SDWebImageManager.shared().loadImage(with: url, options: .continueInBackground, progress: nil) { (image, _, _, _, _, _) in
+            self.imageOneButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
         }
     }
     
