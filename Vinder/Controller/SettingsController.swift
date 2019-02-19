@@ -137,7 +137,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     fileprivate func setupNavigationItems() {
         navigationItem.title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave)),
@@ -207,20 +206,33 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     }
     
     @objc fileprivate func handleMinAgeChange(slider: UISlider) {
-        print(slider.value)
         // want to update minLable in ageRangeCell
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.minLabel.text = "Min: \(Int(slider.value))"
-        self.user?.minSeekingAge = Int(slider.value)
+//        let indexPath = IndexPath(row: 0, section: 5)
+//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+//        ageRangeCell.minLabel.text = "Min: \(Int(slider.value))"
+//        self.user?.minSeekingAge = Int(slider.value)
+        evaluateMinMax()
     }
     
     @objc fileprivate func handleMaxAgeChange(slider: UISlider) {
-        print(slider.value)
-        let indexPath = IndexPath(row: 0, section: 5)
-        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
-        ageRangeCell.maxLabel.text = "Max: \(Int(slider.value))"
-        self.user?.maxSeekingAge = Int(slider.value)
+//        let indexPath = IndexPath(row: 0, section: 5)
+//        let ageRangeCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+//        ageRangeCell.maxLabel.text = "Max: \(Int(slider.value))"
+//        self.user?.maxSeekingAge = Int(slider.value)
+        evaluateMinMax()
+    }
+    
+    fileprivate func evaluateMinMax() {
+        guard let ageRangeCell = tableView.cellForRow(at: [5, 0]) as? AgeRangeCell else { return }
+        let minValue = Int(ageRangeCell.minSlider.value)
+        var maxValue = Int(ageRangeCell.maxSlider.value)
+        maxValue = max(minValue, maxValue)
+        ageRangeCell.maxSlider.value = Float(maxValue)
+        ageRangeCell.minLabel.text = "Min \(minValue)"
+        ageRangeCell.maxLabel.text = "Max \(maxValue)"
+        
+        user?.minSeekingAge = minValue
+        user?.maxSeekingAge = maxValue
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -233,6 +245,8 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             // gotta setup label on the cell
             ageRangeCell.minLabel.text = "Min \(user?.minSeekingAge ?? -1)"
             ageRangeCell.maxLabel.text = "Max \(user?.maxSeekingAge ?? -1)"
+            ageRangeCell.minSlider.value = Float(user?.minSeekingAge ?? -1)
+            ageRangeCell.maxSlider.value = Float(user?.maxSeekingAge ?? -1)
             return ageRangeCell
         }
         
@@ -253,7 +267,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
             if let age = user?.age {
                 cell.textField.text = String(age)
             }
-            
             
         default:
             cell.textField.placeholder = "Enter Bio"
