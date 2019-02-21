@@ -102,6 +102,41 @@ class LoginController: UIViewController {
             self.loginButton.isEnabled = isFormValid
             self.loginButton.setTitleColor(isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .gray, for: .normal)
         })
-        // continue...
+        loginViewModel.isLogginIn.bind { [unowned self] (isRegistering) in
+            if isRegistering == true {
+                self.loginHUD.textLabel.text = "Register"
+                self.loginHUD.show(in: self.view)
+            } else {
+                self.loginHUD.dismiss()
+            }
+        }
+    }
+    
+    let gradientLayer = CAGradientLayer()
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        gradientLayer.frame = view.bounds
+    }
+    
+    fileprivate func setupGradientLayer() {
+        let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
+        let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
+        
+        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradientLayer.locations = [0, 1]
+        view.layer.addSublayer(gradientLayer)
+        gradientLayer.frame = view.bounds
+    }
+    
+    fileprivate func setupLayout() {
+        navigationController?.isNavigationBarHidden = true
+        view.addSubview(verticalStackView)
+        verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.addSubview(backToRegisterButton)
+        backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
+
+
