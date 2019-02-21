@@ -28,9 +28,18 @@ class HomeController: UIViewController, SettingControllerDelegate {
         
         setupLayout()
         fetchCurrentUser()
-//        setupFirestoreUsersCards()
-//        fetchUsersFromFirestore()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("HomeController did appear...")
+        // kick the user out when they logout
+        if Auth.auth().currentUser == nil {
+            let registrationController = RegistrationController()
+            let navController = UINavigationController(rootViewController: registrationController)
+            present(navController, animated: true, completion: nil)
+        }
     }
     
     fileprivate let hud = JGProgressHUD(style: .dark)

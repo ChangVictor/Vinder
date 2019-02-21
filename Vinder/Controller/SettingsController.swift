@@ -96,6 +96,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .interactive
         
+        
         fetchCurrentUser()
 
     }
@@ -292,6 +293,13 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         dismiss(animated: true, completion: nil)
     }
     
+    @objc fileprivate func handleLogout() {
+        try? Auth.auth().signOut()
+        dismiss(animated: true) {
+            
+        }
+    }
+    
     @objc fileprivate func handleSave() {
         print("Saving settings data into Firestore")
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -325,10 +333,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
                 
             })
         }
-    }
-    
-    @objc fileprivate func handleLogout() {
-        
     }
 
 }
