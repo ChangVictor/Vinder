@@ -32,7 +32,6 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
         print("selecting photo with button: ", button)
         let imagePicker = CustomImagePickerController()
         imagePicker.delegate = self
-        
         imagePicker.imageButton = button
         present(imagePicker, animated: true)
     }
@@ -58,7 +57,7 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
                 return
             }
             
-            print("Finish uploading image")
+            print("Finished uploading image")
             ref.downloadURL(completion: { (url, err) in
                 hud.dismiss()
                 if let err = err {
@@ -105,18 +104,14 @@ class SettingsController: UITableViewController, UIImagePickerControllerDelegate
     
     fileprivate func fetchCurrentUser() {
         // Fetch some Firestore data
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
-            if let err = err {
-                print(err)
+        Firestore.firestore().fetchCurrentUser { (user, error) in
+            if let error = error {
+                print("Failed to fetch User:", error)
                 return
             }
             
-            // feth user here
-            guard let dictionary = snapshot?.data() else { return }
-            self.user = User(dictionary: dictionary)
+            self.user = user
             self.loadUserPhotos()
-            
             self.tableView.reloadData()
             
         }

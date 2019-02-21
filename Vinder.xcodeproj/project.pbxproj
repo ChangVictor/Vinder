@@ -19,6 +19,7 @@
 		56CFCEE121E27957004BBD2E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFCEE021E27957004BBD2E /* CardViewModel.swift */; };
 		56D8421F21E8DA3900CDA7BA /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D8421E21E8DA3900CDA7BA /* CustomTextField.swift */; };
 		56D8606F21F91DB90030AC65 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D8606E21F91DB90030AC65 /* SettingsCell.swift */; };
+		56DB283D221EDAA7006965F1 /* Firebase+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DB283C221EDAA7006965F1 /* Firebase+Utils.swift */; };
 		56DD3BA621D2820F00A6D4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */; };
 		56DD3BA821D2820F00A6D4F9 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DD3BA721D2820F00A6D4F9 /* HomeController.swift */; };
 		56DD3BAB21D2820F00A6D4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56DD3BA921D2820F00A6D4F9 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		56CFCEE021E27957004BBD2E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		56D8421E21E8DA3900CDA7BA /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		56D8606E21F91DB90030AC65 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		56DB283C221EDAA7006965F1 /* Firebase+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firebase+Utils.swift"; sourceTree = "<group>"; };
 		56DD3BA221D2820F00A6D4F9 /* Vinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56DD3BA521D2820F00A6D4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56DD3BA721D2820F00A6D4F9 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				56DD3BB821D2860B00A6D4F9 /* Extensions+UIView.swift */,
+				56DB283C221EDAA7006965F1 /* Firebase+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */,
 				56E956A1221B011C00E42525 /* AgeRangeCell.swift in Sources */,
 				56DD3BB921D2860B00A6D4F9 /* Extensions+UIView.swift in Sources */,
+				56DB283D221EDAA7006965F1 /* Firebase+Utils.swift in Sources */,
 				56CFCEE121E27957004BBD2E /* CardViewModel.swift in Sources */,
 				5693C19C21D3F715001FFE33 /* CardView.swift in Sources */,
 				56CED39821F89BC900E49C31 /* SettingsController.swift in Sources */,

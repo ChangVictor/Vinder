@@ -12,17 +12,10 @@ import Firebase
 import JGProgressHUD
 
 class HomeController: UIViewController, SettingControllerDelegate {
-    
-    func didSaveSettings() {
-        print("Notified of dismissal from settingsController in HomerController")
-        fetchCurrentUser()
-    }
-    
 
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
     let bottomControls = HomeButtonControlsStackView()
-
 
     var cardViewModels = [CardViewModel]() // Empty array
     
@@ -31,7 +24,7 @@ class HomeController: UIViewController, SettingControllerDelegate {
         
         topStackView.settingButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
         
-        bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpOutside)
+        bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         
         setupLayout()
         fetchCurrentUser()
@@ -40,18 +33,20 @@ class HomeController: UIViewController, SettingControllerDelegate {
         
     }
     
+    fileprivate let hud = JGProgressHUD(style: .dark)
     fileprivate var user: User?
     
     fileprivate func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, err) in
+        hud.textLabel.text = "Loading..."
+        hud.show(in: view)
+        cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
+        Firestore.firestore().fetchCurrentUser { (user, err) in
             if let err = err {
-                print(err)
+                print("Failed to fetch user:", err)
+                self.hud.dismiss()
                 return
             }
-            guard let dictionary = snapshot?.data() else { return }
-            self.user = User(dictionary: dictionary)
-            
+            self.user = user
             self.fetchUsersFromFirestore()
         }
     }
@@ -65,13 +60,10 @@ class HomeController: UIViewController, SettingControllerDelegate {
     fileprivate func fetchUsersFromFirestore() {
         // pagination
         guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Fetching Users"
-        hud.show(in: view)
+        
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
         query.getDocuments { (snapshot, error) in
-            
-            hud.dismiss()
+            self.hud.dismiss()
             if let error = error  {
                 print("Failed to fecth user: ", error)
                 return
@@ -103,6 +95,11 @@ class HomeController: UIViewController, SettingControllerDelegate {
         present(navController, animated: true, completion: nil)
         
     }
+    
+    func didSaveSettings() {
+        print("Notified of dismissal from settingsController in HomerController")
+        fetchCurrentUser()
+    }
 
     //MARK:- Fileprivate
     
@@ -121,10 +118,9 @@ class HomeController: UIViewController, SettingControllerDelegate {
         let overallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomControls])
         overallStackView.axis = .vertical
         view.addSubview(overallStackView)
-        overallStackView.frame = .init(x: 0, y: 0, width: 300, height: 200)
         overallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overallStackView.isLayoutMarginsRelativeArrangement = true
-        overallStackView.layoutMargins = .init(top: 0, left: 10, bottom: 0, right: 10)
+        overallStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         
         overallStackView.bringSubviewToFront(cardsDeckView)
     }
