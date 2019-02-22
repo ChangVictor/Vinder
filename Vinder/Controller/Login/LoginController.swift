@@ -10,7 +10,7 @@ import UIKit
 import JGProgressHUD
 
 protocol LoginControllerDelegate {
-    func didFinishedLoginIn()
+    func didFinishLoggingIn()
 }
 
 class LoginController: UIViewController {
@@ -19,29 +19,28 @@ class LoginController: UIViewController {
     
     let emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 50)
-        tf.placeholder = "Enter Email"
+        tf.placeholder = "Enter email"
         tf.keyboardType = .emailAddress
-        tf.addTarget(self, action: #selector(handleTextChange), for: .touchUpInside)
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
-    
     let passwordTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 50)
-        tf.placeholder = "Enter Password"
+        tf.placeholder = "Enter password"
         tf.isSecureTextEntry = true
-        tf.addTarget(self, action: #selector(handleTextChange), for: .touchUpInside)
+        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         return tf
     }()
     
     lazy var verticalStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
+        let sv = UIStackView(arrangedSubviews: [
             emailTextField,
             passwordTextField,
             loginButton
             ])
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        return stackView
+        sv.axis = .vertical
+        sv.spacing = 8
+        return sv
     }()
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
@@ -67,17 +66,17 @@ class LoginController: UIViewController {
     }()
     
     @objc fileprivate func handleLogin() {
-        loginViewModel.performLogin { (error) in
+        loginViewModel.performLogin { (err) in
             self.loginHUD.dismiss()
-            if let error = error {
-                print("Failed to log in: ", error)
+            if let err = err {
+                print("Failed to log in:", err)
                 return
             }
-            print("Logged in succesfully")
-            self.dismiss(animated: true, completion: {
-                self.delegate?.didFinishedLoginIn()
-            })
             
+            print("Logged in successfully")
+            self.dismiss(animated: true, completion: {
+                self.delegate?.didFinishLoggingIn()
+            })
         }
     }
     
@@ -85,7 +84,7 @@ class LoginController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Go back", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
         return button
     }()
@@ -107,14 +106,15 @@ class LoginController: UIViewController {
     fileprivate let loginHUD = JGProgressHUD(style: .dark)
     
     fileprivate func setupBindables() {
-        loginViewModel.isFormValid.bind(observer: { [unowned self] (isFormValid) in
+        loginViewModel.isFormValid.bind { [unowned self] (isFormValid) in
             guard let isFormValid = isFormValid else { return }
             self.loginButton.isEnabled = isFormValid
-            self.loginButton.setTitleColor(isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .gray, for: .normal)
-        })
+            self.loginButton.backgroundColor = isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .lightGray
+            self.loginButton.setTitleColor(isFormValid ? .white : .gray, for: .normal)
+        }
         loginViewModel.isLogginIn.bind { [unowned self] (isRegistering) in
             if isRegistering == true {
-                self.loginHUD.textLabel.text = "Register"
+                self.loginHUD.textLabel.text = "Loading user"
                 self.loginHUD.show(in: self.view)
             } else {
                 self.loginHUD.dismiss()
@@ -132,7 +132,7 @@ class LoginController: UIViewController {
     fileprivate func setupGradientLayer() {
         let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
         let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
-        
+        // make sure to user cgColor
         gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
         gradientLayer.locations = [0, 1]
         view.layer.addSublayer(gradientLayer)
@@ -140,14 +140,13 @@ class LoginController: UIViewController {
     }
     
     fileprivate func setupLayout() {
-        
         navigationController?.isNavigationBarHidden = true
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
         view.addSubview(backToRegisterButton)
         backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
+    
 }
-
-

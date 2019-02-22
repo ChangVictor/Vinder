@@ -7,52 +7,48 @@
 //
 
 import UIKit
-import FirebaseFirestore
 import Firebase
 import JGProgressHUD
 
 class HomeController: UIViewController, SettingControllerDelegate, LoginControllerDelegate {
     
-    func didFinishedLoginIn() {
-        fetchCurrentUser()
-    }
-    
-
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
     let bottomControls = HomeButtonControlsStackView()
-
-    var cardViewModels = [CardViewModel]() // Empty array
+    
+    var cardViewModels = [CardViewModel]() // empty array
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         topStackView.settingButton.addTarget(self, action: #selector(handleSettings), for: .touchUpInside)
-        
         bottomControls.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         
         setupLayout()
         fetchCurrentUser()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("HomeController did appear...")
-        // kick the user out when they logout
+        print("HomeController did appear")
+        // you want to kick the user out when they log out
         if Auth.auth().currentUser == nil {
-            let loginController = LoginController()
-            loginController.delegate = self
-            let navController = UINavigationController(rootViewController: loginController)
-            present(navController, animated: true, completion: nil)
+            let registrationController = RegistrationController()
+            registrationController.delegate = self
+            let navController = UINavigationController(rootViewController: registrationController)
+            present(navController, animated: true)
         }
+    }
+    
+    func didFinishLoggingIn() {
+        fetchCurrentUser()
     }
     
     fileprivate let hud = JGProgressHUD(style: .dark)
     fileprivate var user: User?
     
     fileprivate func fetchCurrentUser() {
-        hud.textLabel.text = "Loading..."
+        hud.textLabel.text = "Loading"
         hud.show(in: view)
         cardsDeckView.subviews.forEach({$0.removeFromSuperview()})
         Firestore.firestore().fetchCurrentUser { (user, err) in
@@ -70,17 +66,16 @@ class HomeController: UIViewController, SettingControllerDelegate, LoginControll
         fetchUsersFromFirestore()
     }
     
-    var lastFetchUser: User?
+    var lastFetchedUser: User?
     
     fileprivate func fetchUsersFromFirestore() {
-        // pagination
         guard let minAge = user?.minSeekingAge, let maxAge = user?.maxSeekingAge else { return }
-        
+        // i will introduce pagination here to page through 2 users at a time
         let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
-        query.getDocuments { (snapshot, error) in
+        query.getDocuments { (snapshot, err) in
             self.hud.dismiss()
-            if let error = error  {
-                print("Failed to fecth user: ", error)
+            if let err = err {
+                print("Failed to fetch users:", err)
                 return
             }
             
@@ -88,10 +83,10 @@ class HomeController: UIViewController, SettingControllerDelegate, LoginControll
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
                 self.cardViewModels.append(user.toCardViewModel())
-                self.lastFetchUser = user
+                self.lastFetchedUser = user
                 self.setupCardFromUser(user: user)
             })
-         }
+        }
     }
     
     fileprivate func setupCardFromUser(user: User) {
@@ -103,30 +98,18 @@ class HomeController: UIViewController, SettingControllerDelegate, LoginControll
     }
     
     @objc func handleSettings() {
-        
         let settingsController = SettingsController()
         settingsController.delegate = self
         let navController = UINavigationController(rootViewController: settingsController)
-        present(navController, animated: true, completion: nil)
-        
+        present(navController, animated: true)
     }
     
     func didSaveSettings() {
-        print("Notified of dismissal from settingsController in HomerController")
+        print("Notified of dismissal from SettingsController in HomeController")
         fetchCurrentUser()
     }
-
-    //MARK:- Fileprivate
     
-    fileprivate func setupFirestoreUsersCards() {
-        
-        cardViewModels.forEach { (cardVM) in
-            let cardView = CardView(frame: .zero)
-            cardView.cardViewModel = cardVM
-            cardsDeckView.addSubview(cardView)
-            cardView.fillSuperview()
-        }
-    }
+    // MARK:- Fileprivate
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white
@@ -139,6 +122,6 @@ class HomeController: UIViewController, SettingControllerDelegate, LoginControll
         
         overallStackView.bringSubviewToFront(cardsDeckView)
     }
-
+    
 }
 

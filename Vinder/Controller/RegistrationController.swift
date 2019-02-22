@@ -16,7 +16,6 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
         let image = info[.originalImage] as? UIImage
         registrationViewModel.bindableImage.value = image
 //        registrationViewModel.image = image
-        
         dismiss(animated: true, completion: nil)
     }
     
@@ -27,7 +26,8 @@ extension RegistrationController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 class RegistrationController: UIViewController {
-
+    
+    var delegate: LoginControllerDelegate?
     // UI Components
     let selectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -249,8 +249,8 @@ class RegistrationController: UIViewController {
     
     @objc fileprivate func handleGoToLogin() {
         
-        let loginController = UIViewController()
-        loginController.view.backgroundColor = .yellow
+        let loginController = LoginController()
+        loginController.delegate = delegate
         navigationController?.pushViewController(loginController, animated: true)
     }
 

@@ -82,6 +82,17 @@ class CardView: UIView {
         }
     }
     
+    fileprivate let moreInfoButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "tinder_star").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleMoreInfo() {
+        
+    }
+    
     fileprivate func setupLayout() {
         // custom drawing code
         layer.cornerRadius = 10
@@ -102,6 +113,10 @@ class CardView: UIView {
         
         informationLabel.textColor = .white
         informationLabel.numberOfLines = 0
+        
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: self.bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 16, right: 16), size: .init(width: 44, height: 44))
+        
     }
     
     fileprivate let barStackView = UIStackView()
