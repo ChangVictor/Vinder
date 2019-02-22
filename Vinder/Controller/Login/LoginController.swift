@@ -9,7 +9,13 @@
 import UIKit
 import JGProgressHUD
 
+protocol LoginControllerDelegate {
+    func didFinishedLoginIn()
+}
+
 class LoginController: UIViewController {
+    
+    var delegate: LoginControllerDelegate?
     
     let emailTextField: CustomTextField = {
         let tf = CustomTextField(padding: 24, height: 50)
@@ -68,6 +74,10 @@ class LoginController: UIViewController {
                 return
             }
             print("Logged in succesfully")
+            self.dismiss(animated: true, completion: {
+                self.delegate?.didFinishedLoginIn()
+            })
+            
         }
     }
     
@@ -130,6 +140,7 @@ class LoginController: UIViewController {
     }
     
     fileprivate func setupLayout() {
+        
         navigationController?.isNavigationBarHidden = true
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
