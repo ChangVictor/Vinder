@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5622F2D822218C640045FF72 /* UserDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5622F2D722218C640045FF72 /* UserDetailsController.swift */; };
 		5626D99821D513150065962B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626D99721D513150065962B /* User.swift */; };
 		56486B56221F2A7800805CCB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56486B55221F2A7800805CCB /* LoginController.swift */; };
 		56486B58221F2D8100805CCB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56486B57221F2D8100805CCB /* LoginViewModel.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5622F2D722218C640045FF72 /* UserDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsController.swift; sourceTree = "<group>"; };
 		5626D99721D513150065962B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56486B55221F2A7800805CCB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		56486B57221F2D8100805CCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5622F2D622218C4D0045FF72 /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				5622F2D722218C640045FF72 /* UserDetailsController.swift */,
+			);
+			path = "User Details";
+			sourceTree = "<group>";
+		};
 		5626D99621D5115A0065962B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		56CFCEDE21E27899004BBD2E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5622F2D622218C4D0045FF72 /* User Details */,
 				56486B54221F27C300805CCB /* Login */,
 				56DD3BA721D2820F00A6D4F9 /* HomeController.swift */,
 				5651C1E921E7D4F400403768 /* RegistrationController.swift */,
@@ -366,6 +377,7 @@
 				56DD3BA621D2820F00A6D4F9 /* AppDelegate.swift in Sources */,
 				56B01A8621E2AA7200BE1A19 /* Advertiser.swift in Sources */,
 				569EEB3321D2EA0D00A0BA9E /* HomeButtonControlsStackView.swift in Sources */,
+				5622F2D822218C640045FF72 /* UserDetailsController.swift in Sources */,
 				56E956A1221B011C00E42525 /* AgeRangeCell.swift in Sources */,
 				56DD3BB921D2860B00A6D4F9 /* Extensions+UIView.swift in Sources */,
 				56DB283D221EDAA7006965F1 /* Firebase+Utils.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class HomeController: UIViewController, SettingControllerDelegate, LoginControllerDelegate {
+class HomeController: UIViewController, SettingControllerDelegate, LoginControllerDelegate, CardViewDelegate {
     
     let topStackView = TopNavigationStackView()
     let cardsDeckView = UIView()
@@ -82,19 +82,29 @@ class HomeController: UIViewController, SettingControllerDelegate, LoginControll
             snapshot?.documents.forEach({ (documentSnapshot) in
                 let userDictionary = documentSnapshot.data()
                 let user = User(dictionary: userDictionary)
-                self.cardViewModels.append(user.toCardViewModel())
-                self.lastFetchedUser = user
-                self.setupCardFromUser(user: user)
+                if user.uid != Auth.auth().currentUser?.uid {
+                    self.setupCardFromUser(user: user)
+                }
+//                self.cardViewModels.append(user.toCardViewModel())
+//                self.lastFetchedUser = user
             })
         }
     }
     
     fileprivate func setupCardFromUser(user: User) {
         let cardView = CardView(frame: .zero)
+        cardView.delegate = self
         cardView.cardViewModel = user.toCardViewModel()
         cardsDeckView.addSubview(cardView)
         cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
+    }
+    
+    func didTapMoreInfo() {
+
+        let userDetailsController = UserDetailsController()
+        present(userDetailsController, animated: true, completion: nil)
+        
     }
     
     @objc func handleSettings() {

@@ -9,7 +9,13 @@
 import UIKit
 import SDWebImage
 
+protocol CardViewDelegate {
+    func didTapMoreInfo()
+}
+
 class CardView: UIView {
+    
+    var delegate: CardViewDelegate?
     
     var cardViewModel: CardViewModel! {
         didSet {
@@ -84,12 +90,20 @@ class CardView: UIView {
     
     fileprivate let moreInfoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "tinder_star").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "info_icon").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
         return button
     }()
     
     @objc fileprivate func handleMoreInfo() {
+        // use delegate instead: elegant solution
+        delegate?.didTapMoreInfo()
+//         can't user present on a cardView
+//        // hack solution is to user Singleton on UIApplication class
+//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//        let userDetailsController = UIViewController()
+//        userDetailsController.view.backgroundColor = .yellow
+//        rootViewController?.present(userDetailsController, animated: true, completion: nil)
         
     }
     
