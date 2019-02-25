@@ -10,7 +10,7 @@ import UIKit
 import SDWebImage
 
 protocol CardViewDelegate {
-    func didTapMoreInfo()
+    func didTapMoreInfo(cardViewModel: CardViewModel)
 }
 
 class CardView: UIView {
@@ -19,7 +19,7 @@ class CardView: UIView {
     
     var cardViewModel: CardViewModel! {
         didSet {
-            let imageName = cardViewModel.imageNames.first ?? ""
+            let imageName = cardViewModel.imageUrls.first ?? ""
             // load image using url instead:
             if let url = URL(string: imageName) {
                 imageView.sd_setImage(with: url)
@@ -29,7 +29,7 @@ class CardView: UIView {
             informationLabel.attributedText = cardViewModel.attributedString
             informationLabel.textAlignment = cardViewModel.textAlignment
             
-            (0..<cardViewModel.imageNames.count).forEach { (_) in
+            (0..<cardViewModel.imageUrls.count).forEach { (_) in
                 let barView = UIView()
                 barView.backgroundColor = barDeselectedColor
                 barStackView.addArrangedSubview(barView)
@@ -96,15 +96,9 @@ class CardView: UIView {
     }()
     
     @objc fileprivate func handleMoreInfo() {
-        // use delegate instead: elegant solution
-        delegate?.didTapMoreInfo()
-//         can't user present on a cardView
-//        // hack solution is to user Singleton on UIApplication class
-//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-//        let userDetailsController = UIViewController()
-//        userDetailsController.view.backgroundColor = .yellow
-//        rootViewController?.present(userDetailsController, animated: true, completion: nil)
-        
+
+        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
+ 
     }
     
     fileprivate func setupLayout() {
