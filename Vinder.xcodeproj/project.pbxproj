@@ -12,6 +12,7 @@
 		56486B56221F2A7800805CCB /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56486B55221F2A7800805CCB /* LoginController.swift */; };
 		56486B58221F2D8100805CCB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56486B57221F2D8100805CCB /* LoginViewModel.swift */; };
 		5651C1EA21E7D4F400403768 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5651C1E921E7D4F400403768 /* RegistrationController.swift */; };
+		566DDF7D2225E0E9007705E9 /* SwipingPhotosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566DDF7C2225E0E9007705E9 /* SwipingPhotosController.swift */; };
 		568FFD4521F2542100491456 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568FFD4421F2542100491456 /* Bindable.swift */; };
 		5693C19C21D3F715001FFE33 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5693C19B21D3F715001FFE33 /* CardView.swift */; };
 		569CB20D21F111DA00CBF3B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 569CB20C21F111DA00CBF3B0 /* GoogleService-Info.plist */; };
@@ -40,6 +41,7 @@
 		56486B55221F2A7800805CCB /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		56486B57221F2D8100805CCB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5651C1E921E7D4F400403768 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		566DDF7C2225E0E9007705E9 /* SwipingPhotosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosController.swift; sourceTree = "<group>"; };
 		568FFD4421F2542100491456 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		5693C19B21D3F715001FFE33 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		569CB20C21F111DA00CBF3B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				5622F2D722218C640045FF72 /* UserDetailsController.swift */,
+				566DDF7C2225E0E9007705E9 /* SwipingPhotosController.swift */,
 			);
 			path = "User Details";
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				5626D99821D513150065962B /* User.swift in Sources */,
 				56486B58221F2D8100805CCB /* LoginViewModel.swift in Sources */,
 				56D8606F21F91DB90030AC65 /* SettingsCell.swift in Sources */,
+				566DDF7D2225E0E9007705E9 /* SwipingPhotosController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

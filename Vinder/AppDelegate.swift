@@ -28,7 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = HomeController()
+//        window?.rootViewController = HomeController()
+        window?.rootViewController = SwipingPhotosController()
 //        window?.rootViewController = RegistrationController()
         return true
     }
