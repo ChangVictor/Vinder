@@ -10,36 +10,59 @@ import UIKit
 
 class SwipingPhotosController: UIPageViewController, UIPageViewControllerDataSource {
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        <#code#>
+    let controllers = [
+        PhotoController(image: #imageLiteral(resourceName: "hailey1")),
+        PhotoController(image: #imageLiteral(resourceName: "logan1")),
+        PhotoController(image: #imageLiteral(resourceName: "dua2")),
+        PhotoController(image: #imageLiteral(resourceName: "cillian1"))
+    ]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataSource = self
+        view.backgroundColor = .white
+        
+        setViewControllers([controllers.first!], direction: .forward, animated: false, completion: nil)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        <#code#>
+        
+        let index = self.controllers.firstIndex(where: {$0 == viewController}) ?? 0
+        if index == controllers.count - 1 { return nil }
+        return controllers[index + 1]    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let index = self.controllers.firstIndex(where: {$0 == viewController}) ?? 0
+        if index == 0 { return nil }
+        return controllers[index - 1 ]
     }
     
+}
+
+
+    
+
+
+class PhotoController: UIViewController {
+    
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "logan1"))
+
+    init(image: UIImage) {
+        imageView.image = image
+        super.init(nibName: nil, bundle: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
         
-//        let imageView = UIImageView(image: #imageLiteral(resourceName: "cillian1"))
-//        view.addSubview(imageView)
-//        imageView.fillSuperview()
-        let redViewController = UIViewController()
-        redViewController.view.backgroundColor = .red
+        view.addSubview(imageView)
+        imageView.fillSuperview()
+        imageView.contentMode = .scaleAspectFit
         
-        let blueController = UIViewController()
-        blueController.view.backgroundColor = .blue
-        
-        let controllers = [
-            redViewController,
-            blueController
-        ]
-        
-        setViewControllers(controllers, direction: .forward, animated: false, completion: nil)
     }
-
-
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
